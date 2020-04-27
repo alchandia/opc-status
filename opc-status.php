@@ -23,17 +23,17 @@ $free_memory = $status['memory_usage']['free_memory'];
 
 $wasted_memory = $status['memory_usage']['wasted_memory'];
 
-$num_cached_scripts = number_format($status['opcache_statistics']['num_cached_scripts']);
+$num_cached_scripts = number_format($status['opcache_statistics']['num_cached_scripts'],0,'','');
 
-$hits = number_format($status['opcache_statistics']['hits']);
+$hits = number_format($status['opcache_statistics']['hits'],0,'','');
 
-$misses = number_format($status['opcache_statistics']['misses']);
+$misses = number_format($status['opcache_statistics']['misses'],0,'','');
 
 $blacklist_miss = number_format($status['opcache_statistics']['blacklist_misses']);
 
-$num_cached_keys = number_format($status['opcache_statistics']['num_cached_keys']);
+$num_cached_keys = number_format($status['opcache_statistics']['num_cached_keys'],0,'','');
 
-$max_cached_keys = number_format($status['opcache_statistics']['max_cached_keys']);
+$max_cached_keys = number_format($status['opcache_statistics']['max_cached_keys'],0,'','');
 
 echo "used_memory_percentage=" . $used_memory_percentage .
     ";hit_rate_percentage=" . $hit_rate_percentage .
