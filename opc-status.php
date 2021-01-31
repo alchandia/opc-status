@@ -1,5 +1,11 @@
 <?php
 
+function printMetric($name, $value, $type) {
+  echo "# HELP php_opcache_" . $name . " " . $name . "<br>";
+  echo "# TYPE php_opcache_" . $name . " " . $type . "<br>";
+  echo "php_opcache_" . $name . " ". $value . "<br>";
+}
+
 $status = opcache_get_status();
 $config = opcache_get_configuration();
 
@@ -35,7 +41,27 @@ $num_cached_keys = number_format($status['opcache_statistics']['num_cached_keys'
 
 $max_cached_keys = number_format($status['opcache_statistics']['max_cached_keys'],0,'','');
 
-echo "used_memory_percentage=" . $used_memory_percentage .
+if (isset($_GET['mode'])) {
+  if ($_GET['mode'] == "prom" ) {
+    printMetric("used_memory_percentage", $used_memory_percentage, "gauge");
+    printMetric("hit_rate_percentage", $hit_rate_percentage, "gauge");
+    printMetric("used_key_percentage", $used_key_percentage, "gauge");
+    printMetric("wasted_percentage", $wasted_percentage, "gauge");
+    printMetric("total_memory", $total_memory, "gauge");
+    printMetric("used_memory", $used_memory, "gauge");
+    printMetric("free_memory", $free_memory, "gauge");
+    printMetric("wasted_memory", $wasted_memory, "gauge");
+    printMetric("num_cached_scripts", $num_cached_scripts, "gauge");
+    printMetric("hits", $hits, "gauge");
+    printMetric("misses", $misses, "gauge");
+    printMetric("blacklist_miss", $blacklist_miss, "gauge");
+    printMetric("num_cached_keys", $num_cached_keys, "gauge");
+    printMetric("max_cached_keys", $max_cached_keys, "gauge");
+  } else {
+    print "mode unknown";
+  }
+} else {
+  echo "used_memory_percentage=" . $used_memory_percentage .
     ";hit_rate_percentage=" . $hit_rate_percentage .
     ";used_key_percentage=" . $used_key_percentage .
     ";wasted_percentage=" . $wasted_percentage .
@@ -49,6 +75,7 @@ echo "used_memory_percentage=" . $used_memory_percentage .
     ";blacklist_miss=" . $blacklist_miss .
     ";num_cached_keys=" . $num_cached_keys .
     ";max_cached_keys=" . $max_cached_keys
-   ;
+  ;
+}
 
 ?>
