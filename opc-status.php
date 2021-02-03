@@ -1,9 +1,9 @@
 <?php
 
 function printMetric($name, $value, $type) {
-  echo "# HELP php_opcache_" . $name . " " . $name . "<br>";
-  echo "# TYPE php_opcache_" . $name . " " . $type . "<br>";
-  echo "php_opcache_" . $name . " ". $value . "<br>";
+  echo "# HELP php_opcache_" . $name . " " . $name . "\xA";
+  echo "# TYPE php_opcache_" . $name . " " . $type . "\xA";
+  echo "php_opcache_" . $name . " ". $value . "\xA";
 }
 
 $status = opcache_get_status();
