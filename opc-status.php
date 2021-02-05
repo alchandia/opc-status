@@ -35,7 +35,7 @@ $hits = number_format($status['opcache_statistics']['hits'],0,'','');
 
 $misses = number_format($status['opcache_statistics']['misses'],0,'','');
 
-$blacklist_miss = number_format($status['opcache_statistics']['blacklist_misses']);
+$blacklist_miss = number_format($status['opcache_statistics']['blacklist_misses'],0,'','');
 
 $num_cached_keys = number_format($status['opcache_statistics']['num_cached_keys'],0,'','');
 
