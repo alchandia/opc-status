@@ -6,8 +6,7 @@ Was originally developed to be used in sensu, now also support Prometheus.
 
 # Usage
 
-For Sensu, run as php script from CLI.
-For Prometheus, script need to serve from the Webserver where PHP is installed.
+For Sensu and Prometheus, script need to serve from the Webserver where PHP is installed.
 
 # To-Do
 
